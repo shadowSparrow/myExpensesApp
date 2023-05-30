@@ -14,6 +14,7 @@
 		046A04B22A1D4ADE00D5F159 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046A04B02A1D4ADE00D5F159 /* LaunchScreen.storyboard */; };
 		046A04BB2A1D4E5D00D5F159 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A04BA2A1D4E5D00D5F159 /* TabBarViewController.swift */; };
 		04A03A032A269CB400962D53 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A03A022A269CB400962D53 /* ExpensesViewController.swift */; };
+		04A03A052A26A46200962D53 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A03A042A26A46200962D53 /* ExpensesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		046A04B32A1D4ADE00D5F159 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		046A04BA2A1D4E5D00D5F159 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		04A03A022A269CB400962D53 /* ExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
+		04A03A042A26A46200962D53 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				046A04A92A1D4ADB00D5F159 /* ViewController.swift */,
 				04A03A022A269CB400962D53 /* ExpensesViewController.swift */,
+				04A03A042A26A46200962D53 /* ExpensesView.swift */,
 				046A04BA2A1D4E5D00D5F159 /* TabBarViewController.swift */,
 			);
 			path = ViewControllers;
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046A04BB2A1D4E5D00D5F159 /* TabBarViewController.swift in Sources */,
+				04A03A052A26A46200962D53 /* ExpensesView.swift in Sources */,
 				046A04AA2A1D4ADB00D5F159 /* ViewController.swift in Sources */,
 				046A04A62A1D4ADB00D5F159 /* AppDelegate.swift in Sources */,
 				04A03A032A269CB400962D53 /* ExpensesViewController.swift in Sources */,
