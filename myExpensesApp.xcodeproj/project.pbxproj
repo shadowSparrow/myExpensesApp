@@ -15,6 +15,7 @@
 		046A04BB2A1D4E5D00D5F159 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A04BA2A1D4E5D00D5F159 /* TabBarViewController.swift */; };
 		04A03A032A269CB400962D53 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A03A022A269CB400962D53 /* ExpensesViewController.swift */; };
 		04A03A052A26A46200962D53 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A03A042A26A46200962D53 /* ExpensesView.swift */; };
+		04D090082A2D46970072CE7F /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D090072A2D46970072CE7F /* Expense.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		046A04BA2A1D4E5D00D5F159 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		04A03A022A269CB400962D53 /* ExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
 		04A03A042A26A46200962D53 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
+		04D090072A2D46970072CE7F /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				046A04A52A1D4ADB00D5F159 /* AppDelegate.swift */,
 				046A04A72A1D4ADB00D5F159 /* SceneDelegate.swift */,
+				04D090062A2D46760072CE7F /* Models */,
 				046A04B92A1D4E2600D5F159 /* ViewControllers */,
 				046A04AE2A1D4ADE00D5F159 /* Assets.xcassets */,
 				046A04B02A1D4ADE00D5F159 /* LaunchScreen.storyboard */,
@@ -79,6 +82,14 @@
 				046A04BA2A1D4E5D00D5F159 /* TabBarViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		04D090062A2D46760072CE7F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04D090072A2D46970072CE7F /* Expense.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D090082A2D46970072CE7F /* Expense.swift in Sources */,
 				046A04BB2A1D4E5D00D5F159 /* TabBarViewController.swift in Sources */,
 				04A03A052A26A46200962D53 /* ExpensesView.swift in Sources */,
 				046A04AA2A1D4ADB00D5F159 /* ViewController.swift in Sources */,

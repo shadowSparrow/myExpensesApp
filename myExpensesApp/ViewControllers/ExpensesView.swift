@@ -12,13 +12,16 @@ class ExpensesView: UIView {
     
     var tableView: UITableView!
     var button: UIButton!
+    var texField: UITextField?
+    
+    var expenses: [Expense] = []
     
     override init(frame: CGRect) {
-           super.init(frame: frame)
+        super.init(frame: frame)
         
-            UIElementsInit()
-         }
-
+        UIElementsInit()
+        
+    }
          required init?(coder aDecoder: NSCoder) {
            super.init(coder: aDecoder)
          }
@@ -26,7 +29,8 @@ class ExpensesView: UIView {
 }
 
 extension ExpensesView {
-    private func UIElementsInit(){
+    
+    private func UIElementsInit() {
         tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
@@ -37,36 +41,57 @@ extension ExpensesView {
         button.setTitle("Добавить категорию раходов", for: .normal)
         button.backgroundColor = .blue
         button.layer.cornerRadius = 24
+        button.addTarget(self, action: #selector(addExpensesButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(button)
-        //Contraints
         
+        
+        //Contraints
         let guide = self.safeAreaLayoutGuide
         tableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -60).isActive = true
         tableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
         
-        
         button.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 16).isActive = true
         button.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -16).isActive = true
         button.heightAnchor.constraint(equalToConstant: 48).isActive = true
         button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -229).isActive = true
+    }
+    
+    private func textFieldInit() {
+        texField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 58))
+        guard let texField = texField else {return}
         
-
+        texField.placeholder = "New Expense"
+        texField.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(texField)
+        
+        texField.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        texField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16).isActive = true
+        
+    }
+    
+    @objc func addExpensesButtonPressed() {
+        print("add Expenses")
+        textFieldInit()
+        guard let text = texField?.text else {return}
+        let newExpense = Expense(gathegory: text)
+        expenses.append(newExpense)
+        tableView.reloadData()
     }
     
 }
 
 extension ExpensesView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        8
+        expenses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         let image = UIImage(systemName: "chevron.right")
-        cell.textLabel?.text = "Магазин"
+        cell.textLabel?.text = expenses[indexPath.row].name
         let accessory = UIImageView(image: image)
         accessory.tintColor = .blue
         cell.accessoryView = accessory

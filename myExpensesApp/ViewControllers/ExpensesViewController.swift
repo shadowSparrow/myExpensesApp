@@ -10,9 +10,10 @@ import UIKit
 class ExpensesViewController: UIViewController {
 
     let expensesView = ExpensesView()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.title = "Расходы"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 28)]
         self.view.backgroundColor = UIColor.white
