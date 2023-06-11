@@ -7,14 +7,9 @@
 
 import Foundation
 
-class Expense {
+struct Expense {
     let gathegory: String
-    let name: String? = nil
-    let expenseAmount: Double? = nil
-    
-    init(gathegory: String) {
-        self.gathegory = gathegory
-        
-    }
+    let name: String? = ""
+    let expenseAmount: Double? = 0
     
 }
