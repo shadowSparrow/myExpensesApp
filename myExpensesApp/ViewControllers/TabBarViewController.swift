@@ -17,7 +17,7 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         self.viewControllers = [incomeVC,expensesGraphVC, expensesVC]
         
-        //self.expensesVC.title = "Расходы"
+        self.expensesVC.title = "Расходы"
         self.expensesGraphVC.title = "График"
         self.incomeVC.title = "Доходы"
       

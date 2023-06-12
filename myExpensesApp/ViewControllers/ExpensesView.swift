@@ -16,6 +16,7 @@ class ExpensesView: UIView {
     var texField: UITextField!
     var expenses: [Expense] = []
     var isShowingKeybord = false
+    var isButtonEnabled: Bool = true
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,12 +71,13 @@ extension ExpensesView {
         
         texField.isHidden = true
         texField.delegate = self
-        texField.placeholder = "наименование"
-        
+        texField.attributedPlaceholder = NSAttributedString(
+            string: "наименование",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
         texField.textAlignment = .left
         texField.layer.cornerRadius = 4
         texField.backgroundColor = .white
-        texField.borderStyle = .line
         texField.textColor = .black
         texField.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(texField)
@@ -105,16 +107,31 @@ extension ExpensesView {
   
     
     @objc func addExpensesButtonPressed() {
-        print("add Expenses")
-        texField.isHidden = false
+        
+        if button.backgroundColor == UIColor.cyan{
+               button.backgroundColor = UIColor.blue
+            texField.isHidden = true
+           }
+           else if button.backgroundColor == UIColor.blue {
+               button.backgroundColor = UIColor.cyan
+               texField.isHidden = false
+               let newExpense = Expense(gathegory: texField?.text ?? "jo")
+               expenses.append(newExpense)
+               
+               tableView.reloadData()
+               
+               self.endEditing(true)
+           }
+        
         
     }
     
     @objc func didTapDone() {
         
+        texField.isHidden = true
         let newExpense = Expense(gathegory: texField?.text ?? "jo")
         expenses.append(newExpense)
-        texField.isHidden = true
+        
         tableView.reloadData()
         
         self.endEditing(true)

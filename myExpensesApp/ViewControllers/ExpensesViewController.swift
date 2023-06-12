@@ -16,6 +16,8 @@ class ExpensesViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Расходы"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 28)]
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = .black
         self.view.backgroundColor = UIColor.white
         self.expensesView.frame = self.view.frame
         self.view.addSubview(expensesView)
