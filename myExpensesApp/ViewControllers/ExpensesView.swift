@@ -54,31 +54,14 @@ class ExpensesView: UIView {
         super.init(frame: frame)
         setUIElements()
         setConstraints()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        setKeyboardNotification()
 
     }
     
     required init?(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
     }
-    
-    @objc func keyboardWillShow(notification: Notification) {
-    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-    if isShowingKeybord {
-        self.frame.origin.y = -keyboardSize.height/2
-        }
-    }
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-        self.frame.origin.y = 0
-    }
-    }
 
-        
 }
 
 extension ExpensesView {
@@ -124,19 +107,28 @@ extension ExpensesView {
            else if button.backgroundColor == UIColor.blue {
                button.backgroundColor = UIColor.darkGray
                texField.isHidden = false
-               
+               texField.becomeFirstResponder()
                
            }
     }
     
-    @objc func didTapDone() {
-        
-        texField.isHidden = true
-        let newExpense = Expense(gathegory: texField.text ?? "jo")
-        expenses.append(newExpense)
-        tableView.reloadData()
-        self.endEditing(true)
+    private func setKeyboardNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if isShowingKeybord {
+                self.frame.origin.y = -keyboardSize.height/2
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        self.frame.origin.y = 0
+    }
+
 }
 
 extension ExpensesView: UITableViewDelegate, UITableViewDataSource {
