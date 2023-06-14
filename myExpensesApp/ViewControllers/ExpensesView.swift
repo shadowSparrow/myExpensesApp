@@ -11,64 +11,27 @@ import NotificationCenter
 
 class ExpensesView: UIView {
     
-    var tableView: UITableView!
-    var button: UIButton!
-    var texField: UITextField!
-    var expenses: [Expense] = []
-    var isShowingKeybord = false
-    var isButtonEnabled: Bool = true
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        UIElementsInit()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-
-    }
-    
-    @objc func keyboardWillShow(notification: Notification) {
-    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-    if isShowingKeybord {
-        self.frame.origin.y = -keyboardSize.height/2
-        
-    }
-    }
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-        self.frame.origin.y = 0
-        
-    }
-    }
-    
-
-         required init?(coder aDecoder: NSCoder) {
-           super.init(coder: aDecoder)
-         }
-}
-
-extension ExpensesView {
-    
-    private func UIElementsInit() {
-        tableView = UITableView()
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .white
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(tableView)
-   
-        button = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 58))
+        return tableView
+    }()
+    
+    lazy var button: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 58))
         button.setTitle("Добавить категорию раходов", for: .normal)
         button.backgroundColor = .blue
         button.layer.cornerRadius = 24
         button.addTarget(self, action: #selector(addExpensesButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(button)
-        
-        texField = UITextField(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        
+        return button
+    }()
+    
+    lazy var texField: UITextField = {
+        let texField = UITextField(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         texField.isHidden = true
         texField.delegate = self
         texField.attributedPlaceholder = NSAttributedString(
@@ -80,60 +43,98 @@ extension ExpensesView {
         texField.backgroundColor = .white
         texField.textColor = .black
         texField.translatesAutoresizingMaskIntoConstraints = false
+        return texField
+    }()
+    
+    var expenses: [Expense] = []
+    var isShowingKeybord = false
+    var isButtonEnabled: Bool = true
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUIElements()
+        setConstraints()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+      super.init(coder: aDecoder)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+    if isShowingKeybord {
+        self.frame.origin.y = -keyboardSize.height/2
+        }
+    }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        self.frame.origin.y = 0
+    }
+    }
+
+        
+}
+
+extension ExpensesView {
+    
+    private func setUIElements() {
+        
+        self.addSubview(tableView)
+        self.addSubview(button)
         self.addSubview(texField)
-        
-        
-        //Contraints
-        let guide = self.safeAreaLayoutGuide
-        tableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -60).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-        
-        button.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 16).isActive = true
-        button.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -16).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -229).isActive = true
-        
-        texField.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        texField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8).isActive = true
-        texField.leadingAnchor.constraint(equalTo: guide.leadingAnchor , constant: 16).isActive = true
-        texField.trailingAnchor.constraint(equalTo: guide.trailingAnchor , constant: -16).isActive = true
-        texField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
         
     }
     
-  
+    private func setConstraints() {
+        let guide = self.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: guide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -60),
+            tableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
+            
+            button.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 16),
+            button.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -16),
+            button.heightAnchor.constraint(equalToConstant: 48),
+            button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -229),
+            
+            texField.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            texField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
+            texField.leadingAnchor.constraint(equalTo: guide.leadingAnchor , constant: 16),
+            texField.trailingAnchor.constraint(equalTo: guide.trailingAnchor , constant: -16),
+            texField.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
     
     @objc func addExpensesButtonPressed() {
-        
-        if button.backgroundColor == UIColor.cyan{
+        if button.backgroundColor == UIColor.darkGray {
                button.backgroundColor = UIColor.blue
             texField.isHidden = true
+            let newExpense = Expense(gathegory: texField.text ?? "jo")
+            expenses.append(newExpense)
+            tableView.reloadData()
+            self.endEditing(true)
            }
            else if button.backgroundColor == UIColor.blue {
-               button.backgroundColor = UIColor.cyan
+               button.backgroundColor = UIColor.darkGray
                texField.isHidden = false
-               let newExpense = Expense(gathegory: texField?.text ?? "jo")
-               expenses.append(newExpense)
                
-               tableView.reloadData()
                
-               self.endEditing(true)
            }
-        
-        
     }
     
     @objc func didTapDone() {
         
         texField.isHidden = true
-        let newExpense = Expense(gathegory: texField?.text ?? "jo")
+        let newExpense = Expense(gathegory: texField.text ?? "jo")
         expenses.append(newExpense)
-        
         tableView.reloadData()
-        
         self.endEditing(true)
     }
 }
@@ -154,6 +155,14 @@ extension ExpensesView: UITableViewDelegate, UITableViewDataSource {
         cell.accessoryView = accessory
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        64
+    }
 }
 
 
@@ -163,16 +172,8 @@ override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     super.touchesBegan(touches, with: event)
     self.endEditing(true)
 }
-
-
     
 func textFieldDidBeginEditing(_ textField: UITextField) {
-    let keyboardToolbar = UIToolbar()
-    keyboardToolbar.standardAppearance.doneButtonAppearance = UIBarButtonItemAppearance(style: .done)
-    keyboardToolbar.sizeToFit()
-    textField.inputAccessoryView = keyboardToolbar
-    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
-    keyboardToolbar.items = [doneButton]
     isShowingKeybord = true
 }
     
