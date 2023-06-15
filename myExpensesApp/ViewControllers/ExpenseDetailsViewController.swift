@@ -9,11 +9,16 @@ import UIKit
 
 class ExpenseDetailsViewController: UIViewController {
 
-    var text: String?
+    var text: String = "Ремонт"
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = text
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 28)]
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = .black
+        self.view.backgroundColor = UIColor.white
     }
     
 

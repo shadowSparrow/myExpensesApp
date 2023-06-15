@@ -59,7 +59,7 @@ class ExpensesViewController: UIViewController {
         setConstraints()
         setKeyboardNotification()
     }
-    
+        
     
     private func setUIElements() {
         
@@ -146,6 +146,10 @@ extension ExpensesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let detailVC = ExpenseDetailsViewController()
+        let cell = tableView.cellForRow(at: indexPath)
+        detailVC.text = cell?.textLabel?.text ?? "Wrong"
+        show(detailVC, sender: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
