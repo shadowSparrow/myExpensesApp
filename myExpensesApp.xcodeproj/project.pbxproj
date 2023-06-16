@@ -14,6 +14,7 @@
 		046A04BB2A1D4E5D00D5F159 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A04BA2A1D4E5D00D5F159 /* TabBarViewController.swift */; };
 		04A03A032A269CB400962D53 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A03A022A269CB400962D53 /* ExpensesViewController.swift */; };
 		04D090082A2D46970072CE7F /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D090072A2D46970072CE7F /* Expense.swift */; };
+		04D0FE652A3D101F00C13DBA /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D0FE642A3D101F00C13DBA /* DetailTableViewCell.swift */; };
 		04DA71EE2A3A64D100FA67F0 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA71ED2A3A64D100FA67F0 /* ExpenseDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		046A04BA2A1D4E5D00D5F159 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		04A03A022A269CB400962D53 /* ExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
 		04D090072A2D46970072CE7F /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		04D0FE642A3D101F00C13DBA /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		04DA71ED2A3A64D100FA67F0 /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +65,7 @@
 				046A04A52A1D4ADB00D5F159 /* AppDelegate.swift */,
 				046A04A72A1D4ADB00D5F159 /* SceneDelegate.swift */,
 				04D090062A2D46760072CE7F /* Models */,
+				04D0FE632A3D0FD500C13DBA /* cells */,
 				046A04B92A1D4E2600D5F159 /* ViewControllers */,
 				046A04AE2A1D4ADE00D5F159 /* Assets.xcassets */,
 				046A04B02A1D4ADE00D5F159 /* LaunchScreen.storyboard */,
@@ -87,6 +90,14 @@
 				04D090072A2D46970072CE7F /* Expense.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		04D0FE632A3D0FD500C13DBA /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				04D0FE642A3D101F00C13DBA /* DetailTableViewCell.swift */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +172,7 @@
 			files = (
 				04DA71EE2A3A64D100FA67F0 /* ExpenseDetailsViewController.swift in Sources */,
 				04D090082A2D46970072CE7F /* Expense.swift in Sources */,
+				04D0FE652A3D101F00C13DBA /* DetailTableViewCell.swift in Sources */,
 				046A04BB2A1D4E5D00D5F159 /* TabBarViewController.swift in Sources */,
 				046A04A62A1D4ADB00D5F159 /* AppDelegate.swift in Sources */,
 				04A03A032A269CB400962D53 /* ExpensesViewController.swift in Sources */,

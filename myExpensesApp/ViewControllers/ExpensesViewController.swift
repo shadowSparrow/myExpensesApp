@@ -103,7 +103,6 @@ class ExpensesViewController: UIViewController {
                button.backgroundColor = UIColor.darkGray
                texField.isHidden = false
                texField.becomeFirstResponder()
-               
            }
     }
     
