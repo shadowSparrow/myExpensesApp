@@ -16,6 +16,7 @@ class ExpenseDetailsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .white
+        tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -77,12 +78,14 @@ class ExpenseDetailsViewController: UIViewController {
 }
 
 extension ExpenseDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = DetailTableViewCell(style: .default, reuseIdentifier: "cell")
         
+        let cell = DetailTableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.backgroundColor = .black
         return cell
     }
     
@@ -92,11 +95,13 @@ extension ExpenseDetailsViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        64
+        37
     }
+    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = DetailExpensesTableViewHeaderView(reuseIdentifier: "header")
         return header
     }
+     
 }
