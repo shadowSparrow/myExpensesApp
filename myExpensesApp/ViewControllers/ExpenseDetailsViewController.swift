@@ -94,4 +94,9 @@ extension ExpenseDetailsViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         64
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = DetailExpensesTableViewHeaderView(reuseIdentifier: "header")
+        return header
+    }
 }
